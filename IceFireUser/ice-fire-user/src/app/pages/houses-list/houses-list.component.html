@@ -1,0 +1,47 @@
+<div class="houses-page">
+    <div class="house-content">
+
+        <h2 class="page-title">All Houses</h2>
+
+        <div class="toolbar">
+            <div class="search-wrapper">
+                <input type="text" placeholder="Search by house name…" class="search-input"
+                    [value]="(search$ | async) || ''" (input)="onSearch($event)" />
+            </div>
+
+            <div class="page-info">
+                Page {{ currentPage }}
+            </div>
+        </div>
+
+        @if (loading$ | async) {
+        <div class="state-message">Loading houses…</div>
+        }
+
+        @if (error$ | async; as error) {
+        <div class="state-message error">{{ error?.error?.message }}</div>
+        }
+
+        @if (houses$ | async; as houses) {
+        @if (favorites$ | async; as favorites) {
+
+        <div class="houses-grid">
+            @for (house of houses; track house.url) {
+            <app-house-card [house]="house" [favorites]="favorites"
+                (favoriteToggled)="toggleFavorite($event, favorites)">
+            </app-house-card>
+            }
+        </div>
+
+        <div class="pagination">
+            <button (click)="firstPage()" [disabled]="currentPage === 1">First</button>
+            <button (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+            <button (click)="lastPage()" [disabled]="currentPage === totalPages">Last</button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        </div>
+
+        }
+        }
+    </div>
+</div>

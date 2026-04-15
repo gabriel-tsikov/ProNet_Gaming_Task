@@ -1,0 +1,23 @@
+.hamburger-menu-button {
+  @apply relative w-8 h-8 flex flex-col justify-center items-center cursor-pointer;
+}
+
+.hamburger-line {
+  @apply w-6 h-0.5 bg-white transition-all duration-300 ease-in-out;
+}
+
+.hamburger-line + .hamburger-line {
+  @apply mt-1.5;
+}
+
+.hamburger-menu-button.open .hamburger-line:nth-child(1) {
+  @apply transform rotate-45 translate-y-2 bg-black;
+}
+
+.hamburger-menu-button.open .hamburger-line:nth-child(2) {
+  @apply opacity-0;
+}
+
+.hamburger-menu-button.open .hamburger-line:nth-child(3) {
+  @apply transform -rotate-45 -translate-y-2 bg-black;
+} 

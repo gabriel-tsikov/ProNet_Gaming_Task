@@ -1,0 +1,27 @@
+<div class="card">
+  <h3 class="title">{{ house.name || 'Unknown House' }}</h3>
+
+  <div class="region">
+    {{ house.region || 'Unknown region' }}
+  </div>
+
+  @if (house.coatOfArms) {
+  <div class="coat">
+    {{ house.coatOfArms }}
+  </div>
+  }
+
+  <div class="footer">
+    <a [routerLink]="['/houses', getHouseId()]" class="details-link">
+      View Details →
+    </a>
+
+    <button type="button" (click)="onToggleFavorite()" class="fav-btn">
+      @if (isFavorite()) {
+      <app-full-heart></app-full-heart>
+      } @else {
+      <app-empty-heart></app-empty-heart>
+      }
+    </button>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <a routerLink="/houses" class="back-link">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+    Back to All Houses
+  </a>
+  <div class="data-holder">
+
+
+
+    <div class="card">
+      <div class="header">
+        <h2>{{ house?.name || 'Unnamed House' }}</h2>
+
+        @if (favorites$ | async; as favorites) {
+        @if (house) {
+        <button (click)="toggleFavorite(house, favorites)">
+          @if (isFavorite(house.url, favorites)) {
+          <app-full-heart></app-full-heart>
+          } @else {
+          <app-empty-heart></app-empty-heart>
+          }
+        </button>
+        }
+        }
+      </div>
+
+      <div class="details">
+        <span class="label">Region:</span><span class="value">{{ house?.region || '—' }}</span>
+        <span class="label">Words:</span><span class="value">{{ house?.words || '—' }}</span>
+        <span class="label">Coat of Arms:</span><span class="value">{{ house?.coatOfArms || '—' }}</span>
+        <span class="label">Current Lord:</span><span class="value">{{ house?.currentLord || '—' }}</span>
+        <span class="label">Founded:</span><span class="value">{{ house?.founded || '—' }}</span>
+        <span class="label">Ancestral Weapons:</span><span class="value">{{ (house?.ancestralWeapons || []).join(', ')
+          ||
+          '—' }}</span>
+        <span class="label">Seats:</span><span class="value">{{ (house?.seats || []).join(', ') || '—' }}</span>
+        <span class="label">Died out:</span><span class="value">{{ house?.diedOut || 'No' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

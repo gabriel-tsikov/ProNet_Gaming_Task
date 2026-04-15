@@ -1,0 +1,25 @@
+<div class="favorites-page">
+  <div class="content-holder">
+
+    <h2 class="page-title">Favorites</h2>
+
+    @if (favorites$ | async; as favorites) {
+    @if (favorites.length === 0) {
+    <div class="empty-state">
+      No favorites yet.
+      <a routerLink="/houses" class="browse-link">
+        Browse houses
+      </a>
+      to add some!
+    </div>
+    } @else {
+    <div class="favorites-grid">
+      @for (house of favorites; track house.url) {
+      <app-house-card [house]="house" [favorites]="favorites" (favoriteToggled)="removeFromFavorites($event)">
+      </app-house-card>
+      }
+    </div>
+    }
+    }
+  </div>
+</div>

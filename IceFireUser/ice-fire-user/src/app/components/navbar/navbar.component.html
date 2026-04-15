@@ -1,0 +1,49 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <a routerLink="/" class="brand">ProNet Task</a>
+
+    <a routerLink="/" routerLinkActive="active-link" class="nav-link desktop">
+      Home
+    </a>
+
+    @if (authService.isLoggedIn()) {
+    <a routerLink="/houses" routerLinkActive="active-link" class="nav-link desktop">All Houses</a>
+    <a routerLink="/favorites" routerLinkActive="active-link" class="nav-link desktop">Favorites</a>
+    <a (click)="authService.logout()" class="nav-link desktop logout">Logout</a>
+    }
+  </div>
+
+  <div class="nav-right">
+    @if (!authService.isLoggedIn()) {
+    <a routerLink="/login" routerLinkActive="active-link" class="nav-link desktop">Login</a>
+    <a routerLink="/register" routerLinkActive="active-link" class="nav-link desktop">Register</a>
+    }
+
+    <app-hamburger-menu [isOpen]="menuOpen" (toggleMenu)="toggleMenu()" class="hamburger"></app-hamburger-menu>
+  </div>
+</nav>
+
+@if (menuOpen) {
+<div class="mobile-overlay">
+  <div class="overlay-bg" (click)="closeMenu()"></div>
+
+  <aside class="mobile-menu">
+    <div class="mobile-header">
+      <span>Menu</span>
+    </div>
+
+    <nav class="mobile-links">
+      @if (!authService.isLoggedIn()) {
+      <a routerLink="/login" (click)="closeMenu()" class="mobile-link">Login</a>
+      <a routerLink="/register" (click)="closeMenu()" class="mobile-link">Register</a>
+      }
+
+      @if (authService.isLoggedIn()) {
+      <a routerLink="/houses" (click)="closeMenu()" class="mobile-link">All Houses</a>
+      <a routerLink="/favorites" (click)="closeMenu()" class="mobile-link">Favorites</a>
+      <a (click)="closeMenu(); authService.logout()" class="mobile-link">Logout</a>
+      }
+    </nav>
+  </aside>
+</div>
+}
