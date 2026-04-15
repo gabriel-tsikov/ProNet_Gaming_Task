@@ -4,7 +4,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   selector: 'app-hamburger-menu',
   imports: [],
   templateUrl: './hamburger-menu.component.html',
-  styleUrls: ['./hamburger-menu.component.css']
+  styleUrls: ['./hamburger-menu.component.scss']
 })
 export class HamburgerMenuComponent {
   @Input() isOpen: boolean = false;

@@ -1,0 +1,37 @@
+.hamburger-menu-button {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-line+.hamburger-line {
+  margin-top: 6px;
+}
+
+.hamburger-menu-button.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+  background-color: black;
+}
+
+.hamburger-menu-button.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu-button.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+  background-color: black;
+}
